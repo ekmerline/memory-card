@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import MemoryCard from '../components/memory-card'
-//import styled from 'styled-components'
+import styled from 'styled-components'
+
+const GameDiv = styled.div`
+    position: fixed;
+    height: 100%
+`
 
 const MemoryGame = ({ data }) => {
 
@@ -96,41 +101,19 @@ const MemoryGame = ({ data }) => {
         
     }
 
-    // const [cardOne, setCardOne ] = useState("none")
-    // const [cardTwo, setCardTwo ] = useState("none")
-    // const [oneFlipped, setOneFlipped] = useState(false)
-    // const 
-
-    // const cardClick = (isFlipped, id) => {
-    //     if(!oneFlipped){
-    //         setOneFlipped(true)
-    //         setCardOne(id)
-    //     }else if(oneFlipped){
-
-    //     }
-    // }
-
-    // const cardPicsOne = [...memoryCardPics]
-    // const cardPicsTwo = [...memoryCardPics]
-    // const comboCards = shuffleCards(cardPicsOne.concat(cardPicsTwo))
-
     return (
         <Layout>
             <h1>{gameTitle}</h1>
-            <div>
+            <GameDiv>
             {
                 cardsArray.map((obj, index) => (
                     <MemoryCard clickCard={clickCard} frontImage={obj.image} backImage={memoryCardBackPic.fluid.src} isFlipped={obj.flipped} isGuessed={obj.guessed} key={index} cardInd={index}></MemoryCard>
-                    //<MemoryCard backImage={memoryCardBackPic.fluid.src} frontImage={obj.image} cardId={obj.id} guessed={obj.guessed} flipped={obj.flipped} key={index}></MemoryCard>
                 ))
             }
-            </div>
+            </GameDiv>
             
         </Layout>
     )
-
-
-
 }
 
 export default MemoryGame
@@ -141,16 +124,17 @@ query memoryGameQuery($slug: String!) {
       gameTitle
       slug
       memoryCardBackPic {
-        fluid(maxWidth: 300) {
+        fluid(maxWidth: 200) {
           src
         }
       }
       memoryCardPics {
         id
-        fluid(maxWidth: 300) {
+        fluid(maxWidth: 200) {
           src
         }
       }
     }
   }
+  
 `
