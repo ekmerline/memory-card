@@ -5,8 +5,7 @@ import MemoryCard from '../components/memory-card'
 import styled from 'styled-components'
 
 const GameDiv = styled.div`
-    position: fixed;
-    height: 100%
+
 `
 
 const MemoryGame = ({ data }) => {
